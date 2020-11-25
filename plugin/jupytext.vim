@@ -279,6 +279,7 @@ function s:read_from_ipynb()
         " we edit a new file (vim new.ipynb)
         call s:debugmsg("read ".fnameescape(b:jupytext_file))
         silent execute "read ++enc=utf-8 ".fnameescape(b:jupytext_file)
+		silent execute "%s/^```python.*/```python/"
     endif
     if b:jupytext_file_exists
         let l:register_unload_cmd = "autocmd jupytext_ipynb BufUnload <buffer> call s:cleanup(\"".fnameescape(b:jupytext_file)."\", 0)"
